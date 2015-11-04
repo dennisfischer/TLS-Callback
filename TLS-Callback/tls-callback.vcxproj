@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{24EBE9AA-2B36-4753-978A-109B51E28520}</ProjectGuid>
+    <ProjectGuid>{B1944EB8-4336-40B4-8DA8-C57EFF7EA900}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>tlstest</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
@@ -147,7 +147,12 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="tls-test.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="tls-callback.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
