@@ -38,10 +38,14 @@ void NTAPI __stdcall TLSCallbacks(PVOID DllHandle, DWORD dwReason, PVOID Reserve
 		std::cout << "Process dettach" << std::endl;
 		break;
 	case DLL_THREAD_ATTACH: 
+		system("pause");
 		std::cout << "Thread attach" << std::endl;
 		break;
 	case DLL_THREAD_DETACH: 
 		std::cout << "Thread dettach" << std::endl;
+		break;
+	default:
+		std::cout << dwReason << std::endl;
 		break;
 	}
 }
@@ -49,22 +53,11 @@ void NTAPI __stdcall TLSCallbacks(PVOID DllHandle, DWORD dwReason, PVOID Reserve
 // end declaration
 
 #include "process.h"
-thread_local long rage = 0L;
-
-void threadFunction(void*)
-{
-	rage = std::rand();
-	printf("Rage is: %d\n", rage);
-	while (true) Sleep(INFINITE);
-}
 
 int main(int argc, char* argv[])
 {
-	for (auto i = 0; i < 1; i++)
-	{
-		auto retVal = HANDLE(_beginthread(threadFunction, 0, nullptr));
-		printf("Thread id: %d\n", GetThreadId(retVal));
-	}
+	HMODULE module = LoadLibrary(L"dll-injector-sample.dll");
 	system("pause");
+	FreeLibrary(module);
 }
 
